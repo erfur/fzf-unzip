@@ -16,9 +16,13 @@ class FzfUnzip:
 
     def extract_file(self, filename):
         file_basename = os.path.basename(filename)
-        if self.dry_run:
-            print(f'[*] Extracting {filename} to {os.path.join(os.curdir, os.path.basename(filename))}')
-        else:
+        if self.archive.getinfo(filename).is_dir():
+            print(f'[-] Cannot extract folders yet! ({filename})')
+            return
+
+        print(f'[*] Extracting {filename} to {os.path.join(os.curdir, os.path.basename(filename))}')
+
+        if not self.dry_run:
             with open(os.path.join(os.curdir, file_basename), 'wb') as f:
                 f.write(self.archive.read(filename))
 

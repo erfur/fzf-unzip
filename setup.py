@@ -15,7 +15,7 @@ setup(
     description="Use fzf to select which files to unzip",
     entry_points={
         'console_scripts': [
-            'fzf_unzip=fzf_unzip.cli:main',
+            'fzf-unzip=fzf_unzip.cli:main',
         ],
     },
     install_requires=requirements,
